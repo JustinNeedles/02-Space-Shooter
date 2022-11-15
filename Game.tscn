@@ -1,3 +1,59 @@
-[gd_scene format=2]
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://VSlider.gd" type="Script" id=2]
+[ext_resource path="res://Health_Station.tscn" type="PackedScene" id=3]
+[ext_resource path="res://BlackHole/Black_Hole.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Centipede_Manager.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Enemy_Spawner.gd" type="Script" id=6]
+[ext_resource path="res://Hud.gd" type="Script" id=7]
 
 [node name="Game" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1024, 300 )
+rotation = 1.5708
+
+[node name="Enemy_Spawner" type="Node2D" parent="."]
+script = ExtResource( 6 )
+
+[node name="Timer" type="Timer" parent="Enemy_Spawner"]
+wait_time = 0.5
+
+[node name="Black_Hole" parent="." instance=ExtResource( 4 )]
+position = Vector2( 585, 600 )
+
+[node name="VSlider" type="VSlider" parent="."]
+margin_left = 679.0
+margin_top = 75.0
+margin_right = 695.0
+margin_bottom = 142.0
+script = ExtResource( 2 )
+
+[node name="Health_Station" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1462, 600 )
+
+[node name="Centipede_Manager" parent="." instance=ExtResource( 5 )]
+
+[node name="Effects" type="Node" parent="."]
+
+[node name="Hud" type="Node" parent="."]
+script = ExtResource( 7 )
+
+[node name="Wave" type="Label" parent="Hud"]
+margin_left = 40.0
+margin_top = 70.0
+margin_right = 83.0
+margin_bottom = 84.0
+rect_scale = Vector2( 1.5, 1.5 )
+text = "Wave: "
+
+[node name="Score" type="Label" parent="Hud"]
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 125.0
+margin_bottom = 61.0
+rect_scale = Vector2( 1.5, 1.5 )
+text = "Score: "
+
+[connection signal="timeout" from="Enemy_Spawner/Timer" to="Enemy_Spawner" method="_on_Timer_timeout"]

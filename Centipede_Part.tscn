@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Centipede_Body.gd" type="Script" id=1]
+[ext_resource path="res://New Piskel (6) (1).png" type="Texture" id=2]
+
+[node name="Centipede_Part" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( 4, -14, 7, -14, 7, -13, 9, -13, 9, -12, 10, -12, 10, -11, 11, -11, 11, -10, 12, -10, 12, -9, 13, -9, 13, -7, 14, -7, 14, -4, 15, -4, 15, 4, 14, 4, 14, 7, 13, 7, 13, 9, 12, 9, 12, 10, 11, 10, 11, 11, 10, 11, 10, 12, 9, 12, 9, 13, 7, 13, 7, 14, 4, 14, 4, 15, -4, 15, -4, 14, -7, 14, -7, 13, -9, 13, -9, 12, -10, 12, -10, 11, -11, 11, -11, 10, -12, 10, -12, 9, -13, 9, -13, 7, -14, 7, -14, 4, -15, 4, -15, -4, -14, -4, -14, -7, -13, -7, -13, -9, -12, -9, -12, -10, -11, -10, -11, -11, -10, -11, -10, -12, -9, -12, -9, -13, -7, -13, -7, -14, -4, -14, -4, -15, 4, -15 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
