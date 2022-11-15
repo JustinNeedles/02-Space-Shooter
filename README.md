@@ -9,4 +9,4 @@ My vainglorious self
 ## Future Development
 None to speak of (ask nicely)
 ## Created by
-Justin Hay (the jokes keep me sane)
+Justin Hay
